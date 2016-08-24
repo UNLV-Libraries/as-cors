@@ -8,20 +8,19 @@ An ArchivesSpace plugin that adds Access-Control-Allow headers to HTTP requests 
 
 ## Installation
 
-1.  Download or clone this repository.
+1.  Download or clone this repository into the ArchivesSpace `plugins/` directory..
 
         git clone git@github.com:RockefellerArchiveCenter/as-cors.git
 
-2.  Add the `as-cors/` directory to the ArchivesSpace `plugins/` directory.
-3.  Edit `config/config.rb` to include the plugin:
+2.  Edit `config/config.rb` to include the plugin:
 
         AppConfig[:plugins] = ['local',  'lcnaf', 'aspace-public-formats', 'as-cors']
 
-4.  Restart ArchivesSpace.
+3.  Restart ArchivesSpace.
 
 ## Usage
 
-Routes on which CORS headers are available can be edited by changing the `CORS_ENDPOINTS` variable. For production use, `headers["Access-Control-Allow-Origin"]` should specify a host name, rather than the permissive wildcard `*`. 
+Routes on which CORS headers are available can be edited by changing the `CORS_ENDPOINTS` variable. For production use, `headers["Access-Control-Allow-Origin"]` should specify a host name, rather than the permissive wildcard `*`.
 
 ## Contributing
 
