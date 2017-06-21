@@ -1,5 +1,5 @@
 # Comma-separated list of ArchivesSpace API endpoints you want accessible via Javascript
-CORS_ENDPOINTS = ['/version', '/users/current-user', '/repositories/:repo_id/find_by_id/archival_objects', '/repositories/:repo_id/archival_objects/:id', '/repositories/:repo_id/resources/:id']
+CORS_ENDPOINTS = ['/version', '/users/current-user', '/repositories/:repo_id/find_by_id/archival_objects', '/repositories/:repo_id/archival_objects/:id', '/repositories/:repo_id/resources/:id', '/locations/:id', '/repositories/:repo_id/search', '/container_profiles', '/container_profiles/:id']
 
 class CORSMiddleware
 
