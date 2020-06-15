@@ -20,7 +20,25 @@ An ArchivesSpace plugin that adds Access-Control-Allow headers to HTTP requests 
 
 ## Usage
 
-Routes on which CORS headers are available can be edited by changing the `CORS_ENDPOINTS` variable. For production use, `headers["Access-Control-Allow-Origin"]` should specify a host name, rather than the permissive wildcard `*`.
+Routes on which CORS headers are available can be edited by defining the `AppConfig[:cors_endpoints]` variable.
+For production use, `AppConfig[:cors_allow_origin]` should specify a host name, rather than the permissive wildcard `*`.
+
+The default configuration is:
+
+```ruby
+AppConfig[:cors_allow_origin] = '*'
+AppConfig[:cors_endpoints] = [
+  '/version',
+  '/users/current-user',
+  '/repositories/:repo_id/find_by_id/archival_objects',
+  '/repositories/:repo_id/archival_objects/:id',
+  '/repositories/:repo_id/resources/:id',
+  '/locations/:id',
+  '/repositories/:repo_id/search',
+  '/container_profiles',
+  '/container_profiles/:id',
+]
+```
 
 ## Contributing
 

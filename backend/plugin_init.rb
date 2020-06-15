@@ -1,5 +1,25 @@
-# Comma-separated list of ArchivesSpace API endpoints you want accessible via Javascript
-CORS_ENDPOINTS = ['/version', '/users/current-user', '/repositories/:repo_id/find_by_id/archival_objects', '/repositories/:repo_id/archival_objects/:id', '/repositories/:repo_id/resources/:id', '/locations/:id', '/repositories/:repo_id/search', '/container_profiles', '/container_profiles/:id']
+unless AppConfig.has_key? :cors_allow_origin
+  # Origin to allow for CORS requests ('*' is any host)
+  AppConfig[:cors_allow_origin] = '*'
+end
+
+unless AppConfig.has_key? :cors_endpoints
+  # Comma-separated list of ArchivesSpace API endpoints you want accessible via Javascript
+  AppConfig[:cors_endpoints] = [
+    '/version',
+    '/users/current-user',
+    '/repositories/:repo_id/find_by_id/archival_objects',
+    '/repositories/:repo_id/archival_objects/:id',
+    '/repositories/:repo_id/resources/:id',
+    '/locations/:id',
+    '/repositories/:repo_id/search',
+    '/container_profiles',
+    '/container_profiles/:id',
+  ]
+end
+
+CORS_ALLOW_ORIGIN = AppConfig[:cors_allow_origin]
+CORS_ENDPOINTS = AppConfig[:cors_endpoints]
 
 class CORSMiddleware
 
@@ -18,7 +38,7 @@ class CORSMiddleware
 
       # Add CORS headers
       headers = result[1]
-      headers["Access-Control-Allow-Origin"] = "*"
+      headers["Access-Control-Allow-Origin"] = CORS_ALLOW_ORIGIN
       headers["Access-Control-Allow-Methods"] = "GET"
       headers["Access-Control-Allow-Headers"] = "X-ArchivesSpace-Session"
     end
@@ -40,7 +60,7 @@ end
 # Support OPTIONS, which is necessary for certain browsers (for example Google Chrome)
 CORS_ENDPOINTS.each do |uri|
   ArchivesSpaceService.options uri do
-    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Origin"] = CORS_ALLOW_ORIGIN
     response.headers["Access-Control-Allow-Methods"] = "GET"
     response.headers["Access-Control-Allow-Headers"] = "X-ArchivesSpace-Session"
 
