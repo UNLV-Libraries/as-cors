@@ -23,6 +23,8 @@ An ArchivesSpace plugin that adds Access-Control-Allow headers to HTTP requests 
 Routes on which CORS headers are available can be edited by defining the `AppConfig[:cors_endpoints]` variable.
 For production use, `AppConfig[:cors_allow_origin]` should specify a host name, rather than the permissive wildcard `*`.
 
+Edit `config/config.rb` to include the below default configuration.
+
 The default configuration is:
 
 ```ruby
