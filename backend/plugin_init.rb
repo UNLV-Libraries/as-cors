@@ -7,14 +7,10 @@ unless AppConfig.has_key? :cors_endpoints
   # Comma-separated list of ArchivesSpace API endpoints you want accessible via Javascript
   AppConfig[:cors_endpoints] = [
     '/version',
-    '/users/current-user',
-    '/repositories/:repo_id/find_by_id/archival_objects',
+    '/users/:id/login',
     '/repositories/:repo_id/archival_objects/:id',
     '/repositories/:repo_id/resources/:id',
-    '/locations/:id',
     '/repositories/:repo_id/search',
-    '/container_profiles',
-    '/container_profiles/:id',
   ]
 end
 
