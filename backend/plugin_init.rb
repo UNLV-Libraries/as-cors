@@ -35,7 +35,7 @@ class CORSMiddleware
       # Add CORS headers
       headers = result[1]
       headers["Access-Control-Allow-Origin"] = CORS_ALLOW_ORIGIN
-      headers["Access-Control-Allow-Methods"] = "GET"
+      headers["Access-Control-Allow-Methods"] = "GET, POST"
       headers["Access-Control-Allow-Headers"] = "X-ArchivesSpace-Session"
     end
 
@@ -57,7 +57,7 @@ end
 CORS_ENDPOINTS.each do |uri|
   ArchivesSpaceService.options uri do
     response.headers["Access-Control-Allow-Origin"] = CORS_ALLOW_ORIGIN
-    response.headers["Access-Control-Allow-Methods"] = "GET"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST"
     response.headers["Access-Control-Allow-Headers"] = "X-ArchivesSpace-Session"
 
     halt 200
